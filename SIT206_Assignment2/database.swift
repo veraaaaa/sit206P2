@@ -27,10 +27,10 @@ class Registers {
         return registers
     }
     
-    static func addRegister(username : String, password : String, usersdob : Date, email : String, tel: Int32) {
+    static func addRegister(username : String, password : String, usersdob : Date, email : String, tel: String) {
         let context = getViewContext()
-        var register = UserInfo(context: context)
-        register.username =     username
+        let register = UserInfo(context: context)
+        register.username = username
         register.password = password
         register.usersdob = usersdob
         register.email = email
@@ -39,7 +39,7 @@ class Registers {
     }
     
     static func getRegister(at : Int) -> UserInfo? {
-        if UserInfo.count < 1 { loadRegisters() }
+        if registers.count < 1 { loadRegisters() }
         
         if at >= 0 && at < registers.count {
             return registers[at]

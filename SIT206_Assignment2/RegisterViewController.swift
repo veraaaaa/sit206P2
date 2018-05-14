@@ -30,7 +30,8 @@ class RegisterViewController: UIViewController {
     
 
     @IBAction func submit(_ sender: UIButton) {
-        Registers.addRegister(username: Username.text, password: <#T##String#>, usersdob: <#T##Date#>, email: <#T##String#>, tel: <#T##Int32#>)
+        Registers.addRegister(username: Username.text!, password: Password.text!, usersdob: Usersdob.date, email: Email.text!, tel: Tel.text!)
+        
     }
     /*
     // MARK: - Navigation
