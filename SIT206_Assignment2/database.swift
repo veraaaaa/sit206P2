@@ -11,7 +11,7 @@ import CoreLocation
 import MapKit
 import CoreData
 
-//////
+///////
 class Registers {
     static var registers = [UserInfo]()
     static var viewContext : NSManagedObjectContext?
