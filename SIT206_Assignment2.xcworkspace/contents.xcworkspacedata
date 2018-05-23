@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:/Users/ouuzenmai/Desktop/&#x5b66;&#x6821;/university/2018T1/sit206/Assignment2/SIT206_Assignment2/SIT206_Assignment2/chatRoom/ChannelListTableViewController.swift">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/ouuzenmai/Desktop/&#x5b66;&#x6821;/university/2018T1/sit206/Assignment2/SIT206_Assignment2/SIT206_Assignment2/chatRoom/Channel.swift">
+   </FileRef>
+   <FileRef
       location = "group:SIT206_Assignment2.xcodeproj">
    </FileRef>
    <FileRef
