@@ -1,4 +1,9 @@
-
+//
+//  MusicViewController.swift
+//  SIT206_Assignment2
+//
+//  Created by 王子璇 on 2018/5/19.
+//  Copyright © 2018年 wangzixuan. All rights reserved
 
 import UIKit
 
