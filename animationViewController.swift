@@ -3,7 +3,7 @@
 //  SIT206_Assignment2
 //
 //  Created by 王子璇 on 2018/5/19.
-//  Copyright © 2018年 wangyuwei. All rights reserved.
+//  Copyright © 2018年 wangzixuan. All rights reserved.
 //
 
 import UIKit
@@ -18,7 +18,7 @@ class animationViewController: UIViewController {var gravity : UIGravityBehavior
 override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-    gametimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector:#selector(animationViewController.addBalloon(_:)), userInfo: nil, repeats: true)
+    gametimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector:#selector(animationViewController.dropdown(_:)), userInfo: nil, repeats: true)
         animator = UIDynamicAnimator(referenceView: self.view)
         gravity = UIGravityBehavior(items: [])
         
@@ -27,21 +27,22 @@ override func viewDidLoad() {
         animator?.addBehavior(gravity!)
     }
     
-    @objc func addBalloon(_ : Any){
+    @objc func dropdown(_ : Any){
         let xcoordinate = arc4random() % UInt32(self.view.bounds.width)
         
         let btn = UIButton(frame: CGRect(x: Int(xcoordinate), y: 60, width: 50, height: 50))
-        btn.setImage(UIImage(named: "option2"), for: .normal)
+        btn.setImage(UIImage(named: "coines"), for: .normal)
         btn.addTarget(self, action: #selector(self.didimage(_:)), for: .touchUpInside)
         self.view.addSubview(btn)
         gravity?.addItem((btn as UIView))
     }
     
     @IBAction func didimage(_ sender: UIButton) {
-        sender.setImage(UIImage(named: "option2"), for: .normal)
+        sender.setImage(UIImage(named: "coines"), for: .normal)
         UIView.animate(withDuration: 0.4, animations: {sender.alpha = 0}, completion: {(true) in sender.removeFromSuperview()})
         
     }
+ 
    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
