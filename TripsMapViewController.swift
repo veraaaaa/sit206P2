@@ -11,12 +11,45 @@ import MapKit
 import CoreLocation
 
 class TripsMapViewController: UIViewController,MKMapViewDelegate, CLLocationManagerDelegate {
+    
+    var locationnManager: CLLocationManager?
 
     @IBOutlet weak var tripsMap: MKMapView!
+    var myTrips: [Trip] = [Trip]()
     override func viewDidLoad() {
         super.viewDidLoad()
+        tripsMap.delegate = self
+        locationnManager = CLLocationManager.init()
+        locationnManager?.delegate = self
+        
+        tripsMap.showsUserLocation = true
+        myTrips = Trips.getTrips()
+        for trip in Trips.trips{
+            tripsMap.addAnnotation(trip)
+        }
+        
 
         // Do any additional setup after loading the view.
+    }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        var tripView = mapView.dequeueReusableAnnotationView(withIdentifier: "tripPin")
+        if tripView == nil{
+            tripView = MKAnnotationView(annotation: annotation, reuseIdentifier: "tripPin")
+        }
+        let tripAnnotation = annotation as! Trip
+        tripView?.image = tripAnnotation.img
+        tripView?.annotation = tripAnnotation
+        tripView?.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+        tripView?.canShowCallout = true
+        
+        return tripView
+    }
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        let tripVC = self.storyboard?.instantiateViewController(withIdentifier: "tripDetails") as! TripDetailsViewController
+        tripVC.trip = view.annotation as! Trip
+        self.present(tripVC, animated: true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {

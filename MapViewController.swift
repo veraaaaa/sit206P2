@@ -6,7 +6,7 @@ import CoreLocation
 
 
 
-/*class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate{
+class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate{
 
     @IBOutlet weak var tripsMap: MKMapView!
     let locationManager = CLLocationManager()
@@ -15,10 +15,6 @@ import CoreLocation
         super.viewDidLoad()
         tripsMap.delegate = self
         tripsMap.showsUserLocation = true
-        if Trips.trips.count <= 0 {Trips.loadTrips() }
-        for trip in Trips.trips{
-            tripsMap.addAnnotation(trip)
-        }
         
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
@@ -44,7 +40,7 @@ import CoreLocation
     }
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "tripDetails")
-        (vc as! MainpageViewController).trip = view.annotation as? Trip
+        (vc as! TripDetailsViewController).trip = view.annotation as? Trip
         self.present(vc!, animated: true, completion: nil)
     }
     override func didReceiveMemoryWarning() {
@@ -52,27 +48,6 @@ import CoreLocation
         // Dispose of any resources that can be recreated.
     }
     
-    class locationService : NSObject, CLLocationManagerDelegate{
-        var locationObservers : [LocationObserver] = []
-        var locationManager = CLLocationManager.init()
-        static let shared: locationService = locationService()
-        
-        override private init() {
-            super.init()
-            locationManager.desiredAccuracy = 100
-            locationManager.delegate = self
-            locationManager.requestWhenInUseAuthorization()
-            locationManager.startUpdatingLocation()
-        }
-        func registerLocationObserver(locationObserver : LocationObserver){
-            locationObserver.append(locationObserver)
-        }
-        func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-            for observer in locationObservers{
-                observer.locationDidChange(newLocations: locations)
-            }
-        }
-    }
     
 
     /*
@@ -87,4 +62,4 @@ import CoreLocation
 
 
 }
- */
+

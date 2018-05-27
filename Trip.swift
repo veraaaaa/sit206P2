@@ -17,19 +17,17 @@ class Trip : NSObject, MKAnnotation {
     var title : String?
     var subTitle : String?
     var tripDestination : String
-    var tripDate : String
     var tripDuration : Int
-    var tripDescription : String
+    var tripDate : String
     var img : UIImage
     var coordinate : CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 0, longitude: 0)
     
-    init(_ destination : String, _ description: String, _ date : String, _ image : UIImage, _ duration : Int)
+    init(_ destination : String,_ duration : Int, _ date : String, _ image : UIImage )
     {
         tripDestination = destination
-        tripDate = date
         tripDuration = duration
+        tripDate = date
         img  = image
-        tripDescription = description
         
         super.init()
         updateTripData()
@@ -53,11 +51,11 @@ class Trips {
     static var trips = [Trip]()
    
     static func getTrips() -> [Trip] {
-        if trips.count == 0 { loadTrips() }
+        //if trips.count == 0 { loadTrips() }
         return trips
     }
     
-    static func addTrip(destination : String, duration : Int16, description : String, date : String, img : UIImage, image: UIImage) {
+    static func addTrip(destination : String, duration : Int16, date : String, img : UIImage) {
        
     }
    
@@ -73,17 +71,18 @@ class Trips {
         if trips.count == 0 {
          
          //Add a trip to Melbourne
-            trips.append ( Trip("Greek","beautiful sea side view", "2018/10/10", UIImage(named : "Greek")!,3))
+            trips.append ( Trip("Melbourne", 3 , "2018/10/10", UIImage(named : "Melbourne")!))
         
-            trips.append ( Trip("China", "Long history country", "2018/08/10", UIImage(named : "China")!,5))
+            trips.append ( Trip("Sydney", 13, "2018/08/10", UIImage(named : "Sydney")!))
     
-            trips.append (Trip("Canada","beautiful camping in the natural site", "2017/08/10", UIImage(named : "Canada")!,10))
+            trips.append (Trip("Adelaide", 10, "2017/08/10", UIImage(named : "Adelaide")!))
          
         }
         
     }
-    
-    
-    
 }
+    
+    
+    
+
 
